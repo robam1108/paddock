@@ -24,6 +24,8 @@ export function useAdminCore() {
 
   // 새 플레이어
   const [newName, setNewName] = useState("");
+  // 게임 유저로 등록(프로필 생성). 기본 해제 — Auth 를 함께 쓰는 다른 앱 계정과 구분한다.
+  const [newPaddock, setNewPaddock] = useState(false);
   const [issued, setIssued] = useState<{ name: string; password: string } | null>(
     null,
   );
@@ -145,6 +147,7 @@ export function useAdminCore() {
 
     const { data, error: rpcError } = await supabase.rpc("panel_add_player", {
       p_name: name,
+      p_paddock: newPaddock,
     });
     setBusy(false);
 
@@ -156,6 +159,7 @@ export function useAdminCore() {
     const result = data as { name: string; password: string };
     setIssued(result);
     setNewName("");
+    setNewPaddock(false);
     await load();
   }
 
@@ -387,6 +391,8 @@ export function useAdminCore() {
     setNotice,
     newName,
     setNewName,
+    newPaddock,
+    setNewPaddock,
     issued,
     setIssued,
     delName,

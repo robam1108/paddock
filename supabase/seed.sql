@@ -125,6 +125,6 @@ INSERT INTO public.race_horses (id, name, coat, face, legs, sex, age, weight, sp
 -- admin_create_player() 로 따로 발급한다.
 --   demo01 ~ demo03 / paddock-demo   일반 플레이어
 --   admin           / paddock-admin  관리자(숨김 계정 — 명단·순위에 나오지 않는다)
-select public.admin_create_player(u, 'paddock-demo') from unnest(array['demo01', 'demo02', 'demo03']) u;
-select public.admin_create_player('admin', 'paddock-admin');
+select public.admin_create_player(u, 'paddock-demo', true) from unnest(array['demo01', 'demo02', 'demo03']) u;
+select public.admin_create_player('admin', 'paddock-admin', true);
 update public.profiles set is_admin = true where username = 'admin';

@@ -13,6 +13,8 @@ export default function NewPlayerSection({ m }: { m: AdminModel }) {
     issued,
     newName,
     setNewName,
+    newPaddock,
+    setNewPaddock,
   } = m;
   return (
     <>
@@ -38,6 +40,16 @@ export default function NewPlayerSection({ m }: { m: AdminModel }) {
             발급
           </button>
         </div>
+        <label className="body-15 text-fg flex cursor-pointer items-center gap-2">
+          <input
+            type="checkbox"
+            checked={newPaddock}
+            onChange={(e) => setNewPaddock(e.target.checked)}
+            className="accent-brass h-4 w-4 shrink-0"
+          />
+          게임 유저로 등록
+          <span className="mono-13 text-fg-low">해제하면 게임 프로필 없이 계정만 만듭니다</span>
+        </label>
 
         {issued && (
           <div className="mt-1 border border-brass-line bg-brass-fill p-4 text-center">
